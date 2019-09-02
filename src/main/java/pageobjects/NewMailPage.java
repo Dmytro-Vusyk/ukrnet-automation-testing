@@ -7,8 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * Implementation of new mail page view
+ */
 public class NewMailPage extends AbstractPage {
+    private static final Logger logger = LoggerFactory.getLogger(NewMailPage.class);
 
     @FindBy(xpath = "//input[@class=\"input\" and @name=\"toFieldInput\"]")
     private WebElement ifEmail;
@@ -37,10 +43,13 @@ public class NewMailPage extends AbstractPage {
 
     public void putEmail(String email) {
         ifEmail.sendKeys(email);
+        logger.info(String.format("Put %s into mail filed", email));
     }
 
     public void putSubject(String subject) {
         ifSubject.sendKeys(subject);
+        logger.info(String.format("Put %s into subject filed", subject));
+
     }
 
     public void putMessage(String message) {
@@ -49,29 +58,40 @@ public class NewMailPage extends AbstractPage {
                 .sendKeys(ifMassageInput, message)
                 .build()
                 .perform();
+        logger.info(String.format("Put %s into message filed", message));
     }
 
     public void clickSendButton() {
         btnSend.click();
+        logger.info("Button send is clicked");
     }
 
     public void clickAttachButton() {
+        logger.info("Wait util visibility of button attach file");
         wait.until(ExpectedConditions.visibilityOf(btnAttachFile));
         btnAttachFile.click();
+        logger.info("Button attach file is clicked");
     }
 
-    public boolean isFileAttached(){
+    public boolean isFileAttached() {
         boolean isAttached;
         try {
+            logger.info("Waiting util file will be attached ");
             wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class=\"sendmsg__attachment-foot\"]//a[2]")));
             isAttached = true;
         } catch (NoSuchElementException e) {
             isAttached = false;
         }
+        logger.info(String.format("File is attached: %s", isAttached));
         return isAttached;
     }
 
-    public boolean isMailSend(){
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"sendmsg__ads-ready\"]"))).isDisplayed();
+    public boolean isMailSend() {
+        boolean isSent;
+        isSent = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("//div[@class=\"sendmsg__ads-ready\"]")))
+                .isDisplayed();
+        logger.info(String.format("Mail is sent: %s", isSent));
+        return isSent;
     }
 }

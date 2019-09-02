@@ -22,7 +22,7 @@ public class LoginTest extends BaseTest {
         comparatorBO.findMail(Constants.SUBJECT);
         comparatorBO.openMail();
         comparatorBO.downloadAttachedFile();
-        comparatorBO.checkDownloadedFile(Constants.PATH_TO_DOWNLOADED_FILE);
+        comparatorBO.checkIfFileDownloaded(Constants.PATH_TO_DOWNLOADED_FILE);
         try {
             boolean isEquals =
                     comparatorBO.compareToFiles(Constants.PATH_TO_FILE, Constants.PATH_TO_DOWNLOADED_FILE);

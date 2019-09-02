@@ -1,9 +1,6 @@
 import constants.Constants;
-import constants.DriversEnum;
-import drivers.Driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +16,7 @@ public class BaseTest {
 
     @BeforeClass
     public static void setUp(){
+        System.setProperty(Constants.CHROME_WEBDRIVER_KEY, Constants.CHROME_WEBDRIVER_PATH);
         WebDriverManager.chromedriver().setup();
         Map<String, Object> prefsMap = new HashMap<String, Object>();
         prefsMap.put("profile.default_content_settings.popups", 0);

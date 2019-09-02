@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import pageobjects.HomePage;
 import pageobjects.NewMailPage;
 
+/**
+ * This Class implements logic of creation and sending mail
+ */
 public class MailCreationBO {
     private HomePage homePage;
     private NewMailPage mailPage;
@@ -17,7 +20,12 @@ public class MailCreationBO {
         this.robot = new UploadRobot();
     }
 
-    public void composeMail(String path){
+    /**
+     * Compose email with email address, subject, mail text and attached file
+     *
+     * @param path path to file
+     */
+    public void composeMail(String path) {
         homePage.clickButtonCompose();
         mailPage.putEmail(Constants.EMAIL);
         mailPage.putSubject(Constants.SUBJECT);
@@ -27,7 +35,7 @@ public class MailCreationBO {
         Assertions.assertTrue(mailPage.isFileAttached());
     }
 
-    public void sendMail(){
+    public void sendMail() {
         mailPage.clickSendButton();
         Assertions.assertTrue(mailPage.isMailSend());
     }

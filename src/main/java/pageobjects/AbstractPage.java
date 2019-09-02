@@ -1,10 +1,12 @@
 package pageobjects;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * Abstract class which describes abstract web page
+ */
 abstract class AbstractPage {
     protected WebDriver driver;
     protected WebDriverWait wait;

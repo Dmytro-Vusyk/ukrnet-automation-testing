@@ -3,12 +3,21 @@ package pageobjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * Implementation of Login page
+ */
 public class LoginPage extends AbstractPage {
+    private static final Logger logger = LoggerFactory.getLogger(LoginPage.class);
+
     @FindBy(id = "id-l")
-    public WebElement ifEmail;
+    private WebElement ifEmail;
+
     @FindBy(id = "id-p")
-    public WebElement ifPassword;
+    private WebElement ifPassword;
+
     @FindBy(css = ".button")
     private WebElement btnLogin;
 
@@ -16,16 +25,19 @@ public class LoginPage extends AbstractPage {
         super(webDriver);
     }
 
-    public void inputEmail(String email){
+    public void inputEmail(String email) {
         ifEmail.sendKeys(email);
+        logger.info(String.format("Input %s into email field", email));
     }
 
-    public  void inputPassword(String password){
+    public void inputPassword(String password) {
         ifPassword.sendKeys(password);
+        logger.info(String.format("Input %s into password field", password));
     }
 
-    public void clickLoginButton(){
+    public void clickLoginButton() {
         btnLogin.click();
+        logger.info("Button login is clicked");
     }
 
 

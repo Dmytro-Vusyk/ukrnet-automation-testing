@@ -1,6 +1,5 @@
 package businesslogic;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
@@ -18,7 +17,6 @@ public class LoginBO {
         loginPage.inputEmail(email);
         loginPage.inputPassword(password);
         loginPage.clickLoginButton();
-        Assertions.assertTrue(homePage.isBtnComposeVisible(),"Button login is visible");
     }
 
 }
