@@ -18,7 +18,7 @@ public class BaseTest {
     public static void setUp(){
         System.setProperty(Constants.CHROME_WEBDRIVER_KEY, Constants.CHROME_WEBDRIVER_PATH);
         WebDriverManager.chromedriver().setup();
-        Map<String, Object> prefsMap = new HashMap<String, Object>();
+        Map<String, Object> prefsMap = new HashMap<>();
         prefsMap.put("profile.default_content_settings.popups", 0);
         prefsMap.put("download.default_directory", Constants.PATH_TO_DOWNLOAD_FOLDER);
 

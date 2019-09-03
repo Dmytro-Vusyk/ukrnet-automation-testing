@@ -25,11 +25,13 @@ public class MailComparatorBO {
         this.mailPage = new MailPage(driver);
     }
 
-    /** This method takes Path to first file and path to second file and compare it
-     * @param originalPath
-     * @param downloadedPath
-     * @return
-     * @throws IOException
+    /**
+     * This method takes Path to first file and path to second file and compare it
+     *
+     * @param originalPath   path to original file
+     * @param downloadedPath path to downloaded file
+     * @return boolean value if files are equals or not
+     * @throws IOException if stream didn't exists
      */
     public boolean compareToFiles(String originalPath, String downloadedPath)
             throws IOException {
@@ -50,8 +52,10 @@ public class MailComparatorBO {
                 logger.info(String.format("Files differ at position: %s", pos));
             }
             pos++;
-            b1 = fis1.read();
-            b2 = fis2.read();
+            if (fis1 != null && fis2 != null) {
+                b1 = fis1.read();
+                b2 = fis2.read();
+            }
         }
         if (b1 != b2) {
             equality = false;
@@ -93,6 +97,6 @@ public class MailComparatorBO {
         boolean isDeleted;
         File file = new File(pathToFile);
         isDeleted = file.delete();
-        logger.info(String.format("File at path: %2$2s is deleted: %1$2s", pathToFile, isDeleted));
+        logger.info("File at path: {} is deleted: {}", pathToFile, isDeleted);
     }
 }

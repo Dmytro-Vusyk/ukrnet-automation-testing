@@ -48,7 +48,7 @@ public class MailPage extends AbstractPage {
         logger.info("Wait util file is downloaded");
         wait.until((WebDriver wd) -> file.exists());
         isExist = file.exists();
-        logger.info(String.format("File exists: %s", isExist));
+        logger.info("File exists: {}", isExist);
         return isExist;
     }
 
@@ -60,9 +60,10 @@ public class MailPage extends AbstractPage {
     public boolean isAttachedFileExists() {
         boolean isExist;
         logger.info("Waiting util attachment in file is displayed");
-        isExist = wait.until(ExpectedConditions.visibilityOf(textAttachment))
+        isExist = wait.until(ExpectedConditions
+                .visibilityOf(textAttachment))
                 .isDisplayed();
-        logger.info(String.format("Attachment is displayed: %s", isExist));
+        logger.info("Attachment is displayed: {}", isExist);
         return isExist;
     }
 }

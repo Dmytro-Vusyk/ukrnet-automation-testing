@@ -27,12 +27,12 @@ public class LoginPage extends AbstractPage {
 
     public void inputEmail(String email) {
         ifEmail.sendKeys(email);
-        logger.info(String.format("Input %s into email field", email));
+        logger.info("Input {} into email field", email);
     }
 
     public void inputPassword(String password) {
         ifPassword.sendKeys(password);
-        logger.info(String.format("Input %s into password field", password));
+        logger.info("Input {} into password field", password);
     }
 
     public void clickLoginButton() {

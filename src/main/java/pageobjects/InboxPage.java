@@ -35,7 +35,7 @@ public class InboxPage extends AbstractPage {
         logger.info("Wait util search input field is clickable");
         wait.until(ExpectedConditions.elementToBeClickable(ifSearch));
         ifSearch.sendKeys(searchText);
-        logger.info(String.format("Put %s to search into search field", searchText));
+        logger.info("Put {} to search into search field", searchText);
     }
 
     public void openMail() {

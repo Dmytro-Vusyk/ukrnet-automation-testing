@@ -43,12 +43,12 @@ public class NewMailPage extends AbstractPage {
 
     public void putEmail(String email) {
         ifEmail.sendKeys(email);
-        logger.info(String.format("Put %s into mail filed", email));
+        logger.info("Put {} into mail filed", email);
     }
 
     public void putSubject(String subject) {
         ifSubject.sendKeys(subject);
-        logger.info(String.format("Put %s into subject filed", subject));
+        logger.info("Put {} into subject filed", subject);
 
     }
 
@@ -58,7 +58,7 @@ public class NewMailPage extends AbstractPage {
                 .sendKeys(ifMassageInput, message)
                 .build()
                 .perform();
-        logger.info(String.format("Put %s into message filed", message));
+        logger.info("Put {} into message filed", message);
     }
 
     public void clickSendButton() {
@@ -77,12 +77,14 @@ public class NewMailPage extends AbstractPage {
         boolean isAttached;
         try {
             logger.info("Waiting util file will be attached ");
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class=\"sendmsg__attachment-foot\"]//a[2]")));
+            wait.until(ExpectedConditions
+                    .presenceOfElementLocated(By
+                            .xpath("//div[@class=\"sendmsg__attachment-foot\"]//a[2]")));
             isAttached = true;
         } catch (NoSuchElementException e) {
             isAttached = false;
         }
-        logger.info(String.format("File is attached: %s", isAttached));
+        logger.info("File is attached: {}", isAttached);
         return isAttached;
     }
 
@@ -91,7 +93,7 @@ public class NewMailPage extends AbstractPage {
         isSent = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//div[@class=\"sendmsg__ads-ready\"]")))
                 .isDisplayed();
-        logger.info(String.format("Mail is sent: %s", isSent));
+        logger.info("Mail is sent: {}", isSent);
         return isSent;
     }
 }

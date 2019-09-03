@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="HOME_LOG" value="/logs/app.log"/>
+    <property name="HOME_LOG" value="//src//test//res//log//logs.log"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -12,7 +12,7 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${USER_HOME}</file>
+        <file>${HOME_LOG}</file>
         <append>true</append>
         <immediateFlush>true</immediateFlush>
         <encoder>
@@ -27,6 +27,7 @@
 
     <root level="error">
         <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
     </root>
 
 </configuration>
