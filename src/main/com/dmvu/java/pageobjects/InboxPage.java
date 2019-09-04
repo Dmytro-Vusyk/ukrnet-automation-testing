@@ -33,8 +33,8 @@ public class InboxPage extends AbstractPage {
      */
     public void putSearchText(String searchText) {
         logger.info("Wait util search input field is clickable");
-        wait.until(ExpectedConditions.elementToBeClickable(ifSearch));
-        ifSearch.sendKeys(searchText);
+        wait.until(ExpectedConditions.elementToBeClickable(ifSearch))
+                .sendKeys(searchText);
         logger.info("Put {} to search into search field", searchText);
     }
 

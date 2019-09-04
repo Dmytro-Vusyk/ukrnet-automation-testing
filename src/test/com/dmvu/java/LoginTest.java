@@ -25,7 +25,8 @@ public class LoginTest extends BaseTest {
         comparatorBO.checkIfFileDownloaded(Constants.PATH_TO_DOWNLOADED_FILE);
         try {
             boolean isEquals =
-                    comparatorBO.compareToFiles(Constants.PATH_TO_FILE, Constants.PATH_TO_DOWNLOADED_FILE);
+                    comparatorBO
+                            .compareToFiles(Constants.PATH_TO_FILE, Constants.PATH_TO_DOWNLOADED_FILE);
            Assertions.assertTrue(isEquals);
         } catch (IOException e) {
             e.printStackTrace();

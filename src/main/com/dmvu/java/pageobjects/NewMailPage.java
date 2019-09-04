@@ -1,7 +1,6 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -68,22 +67,19 @@ public class NewMailPage extends AbstractPage {
 
     public void clickAttachButton() {
         logger.info("Wait util visibility of button attach file");
-        wait.until(ExpectedConditions.visibilityOf(btnAttachFile));
-        btnAttachFile.click();
+        wait.until(ExpectedConditions.visibilityOf(btnAttachFile))
+                .click();
         logger.info("Button attach file is clicked");
     }
 
     public boolean isFileAttached() {
         boolean isAttached;
-        try {
-            logger.info("Waiting util file will be attached ");
-            wait.until(ExpectedConditions
-                    .presenceOfElementLocated(By
-                            .xpath("//div[@class=\"sendmsg__attachment-foot\"]//a[2]")));
-            isAttached = true;
-        } catch (NoSuchElementException e) {
-            isAttached = false;
-        }
+
+        logger.info("Waiting util file will be attached ");
+        isAttached = wait.until(ExpectedConditions
+                .presenceOfElementLocated(By
+                        .xpath("//div[@class=\"sendmsg__attachment-foot\"]//a[2]")))
+                .isEnabled();
         logger.info("File is attached: {}", isAttached);
         return isAttached;
     }
